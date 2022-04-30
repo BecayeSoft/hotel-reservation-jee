@@ -1,6 +1,7 @@
 package com.hotel.models;
 
-import com.sun.tools.javac.util.List;
+import java.util.Collection;
+import java.util.Collection;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -8,26 +9,43 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 
 @Entity
 public class Categorie {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(nullable = false, length = 150)
-	String id;
-
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(length = 64)
+	private int id;
+	
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "categorie")
-	private List<Chambre> chambres;
+	private Collection<Chambre> chambres;
+	
+	/*
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="categorie")
+	public Set<Order> getChambres() { return chambres; }
+	
+	@JoinColumnn(name="id_categorie", nullable=false)
+	public Categorie getCategorie() { return categorie; }
+	*/
+
+	/*
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "categorie")
+	private Collection<Chambre> chambres;
+	*/
 
 	String libelle;
+	
 	double tarif;
+	
 	String description;
 	
 	public Categorie() {}
 	
-	public Categorie(String idCategorie, String libelle, List<Chambre> chambres, double tarif, String description) {
+	public Categorie(int idCategorie, String libelle, Collection<Chambre> chambres, double tarif, String description) {
 		super();
 		this.id = idCategorie;
 		this.libelle = libelle;
@@ -37,10 +55,10 @@ public class Categorie {
 	}
 	
 	
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
@@ -51,11 +69,11 @@ public class Categorie {
 		this.libelle = libelle;
 	}
 	
-	public List<Chambre> getChambres() {
+	public Collection<Chambre> getChambres() {
 		return chambres;
 	}
 
-	public void setChambres(List<Chambre> chambres) {
+	public void setChambres(Collection<Chambre> chambres) {
 		this.chambres = chambres;
 	}
 	
