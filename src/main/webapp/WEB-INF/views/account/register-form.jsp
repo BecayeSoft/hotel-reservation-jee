@@ -133,40 +133,70 @@ label {
 		<div class="container" data-aos="fade-up">
 
 			<div class="section-title">
-				<h2>Catégories</h2>
-				<h4>Ajouter une catégorie</h4>
+				<h2>Bienvenue !</h2>
+				<h4>S'enregistrer</h4>
 			</div>
 
 			<div class="container-fluid px-1 py-5 mx-auto">
 				<div class="row d-flex justify-content-center">
 					<div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
 						<div class="card">
-							<form class="form-card" action="save" method="post"">
+							<form class="form-card" action="save" method="post">
+								
 								<div class="row justify-content-between text-left">
+		
 									<div class="form-group col-sm-6 flex-column d-flex">
-										<label class="form-control-label px-3"> Libellé </label> <input
-											type="text" id="fname" name="libelle" placeholder=""
+										<label class="form-control-label px-3"> Nom </label> <input
+											type="text" id="fname" name="nom" placeholder=""
 											onblur="validate(1)">
 									</div>
+									
 									<div class="form-group col-sm-6 flex-column d-flex">
-										<label class="form-control-label px-3"> Tarif </label> <input
-											type="text" id="email" name="tarif" placeholder=""
+										<label class="form-control-label px-3">Pseudonyme </label> <input
+											type="text" id="fname" name="username" placeholder=""
+											onblur="validate(1)">
+									</div>
+									
+									<div class="form-group col-sm-6 flex-column d-flex">
+										<label class="form-control-label px-3">Email</label> <input
+											type="email" id="email" name="email" placeholder=""
 											onblur="validate(3)">
 									</div>
 								</div>
+								
 								<div class="row justify-content-between text-left">
 									<div class="form-group col-sm-6 flex-column d-flex">
-										<label class="form-control-label px-3"> Image</label> <input
-											type="text" id="mob" name="image" placeholder="Url de l'image"
+										<label class="form-control-label px-3"> Age</label> <input
+											type="number" id="mob" name="age" placeholder="Age"
 											onblur="validate(4)">
 									</div>
 								</div>
 								<div class="row justify-content-between text-left">
 									<div class="form-group col-sm-6 flex-column d-flex">
-										<label class="form-control-label px-3">Description </label>
-										<textarea name="description" cols="55" rows=""></textarea>
+										<label class="form-control-label px-3"> Password</label> <input
+											type="password" id="mob" name="password" placeholder="Password"
+											onblur="validate(4)">
 									</div>
 								</div>
+								<div class="row justify-content-between text-left">
+									<div class="form-group col-sm-6 flex-column d-flex">
+										<label class="form-control-label px-3"> Telephone</label> <input
+											type="text" id="mob" name="telephone" placeholder="Tel"
+											onblur="validate(4)">
+									</div>
+								</div>
+								
+								<div class="row justify-content-between text-left">
+									<div class="form-group col-sm-6 flex-column d-flex">
+										<label class="form-control-label px-3">Sexe</label> 
+										<select	class="form-control" name="sexe">
+											<option value="m">Homme</option>
+											<option value="s">Femme</option>
+											<option value="b">Non binaire</option>
+										</select>
+									</div>
+								</div>
+								
 								<div class="row justify-content-end">
 									<div class="form-group col-sm-6">
 										<button type="submit" class="btn-block btn-warning">Valider</button>

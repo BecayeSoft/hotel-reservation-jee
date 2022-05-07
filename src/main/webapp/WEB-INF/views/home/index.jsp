@@ -64,7 +64,7 @@
   <header id="header" class="fixed-top d-flex align-items-cente">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
 
-      <h1 class="logo me-auto me-lg-0"><a href="index.html">>Al Ribat Hotel<</a></h1>
+      <h1 class="logo me-auto me-lg-0"><a href="#">Al Ribat Hotel</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -72,14 +72,15 @@
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">A propos</a></li>
+          <li><a class="nav-link scrollto" href="#categories">Catégories</a></li>
           
           <!--
           <li><a class="nav-link scrollto" href="menu">menu</a></li>
           <li><a class="nav-link scrollto" href="#specials">Specials</a></li>
           <li><a class="nav-link scrollto" href="#events">Events</a></li>
           -->
-          <li><a class="nav-link scrollto" href="#catégories">Catégories</a></li>
-          <!--           <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
+          <!--
+          <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
           <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
@@ -98,9 +99,9 @@
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+         -->
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-         -->
       </nav><!-- .navbar -->
       <a href="#book-a-room" class="book-a-table-btn scrollto d-none d-lg-flex">Réserver une chambre</a>
 
@@ -130,7 +131,7 @@
 
   <main id="main">
 
-    <!-- ======= About Section ======= -->
+    <!-- ======= About Section ======= --
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
 
@@ -424,15 +425,15 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Events</h2>
-          <p>Organize Your Events in our Restaurant</p>
+          <h2>Catégories</h2>
+          <p>Découvrez nos catégories</p>
         </div>
 
-        <div class="events-slider swiper" data-aos="fade-up" data-aos-delay="100">
+        <div class="events-slider swiper" id="" data-aos="fade-up" data-aos-delay="100">
           <div class="swiper-wrapper">
 
+              <c:forEach var="c" items="${categories}">
             <div class="swiper-slide">
-              	<c:forEach var="c" items="${categories}">
 							<div class="row event-item" style="margin-bottom: 5rem;">
 								<div class="col-lg-6">
 									<img
@@ -450,14 +451,14 @@
 
 									<ul>
 										<li><a class="btn btn-danger btn-xs"
-											href="/Hotel-Reservation-JEE/categories/chambres?id=${c.id}">Voir les chambres<i
+											href="/Hotel-Reservation-JEE/categories/chambres?id=${c.id}">Découvrir<i
 												class="bi bi-check-circled"></i>
 										</a></li>
 									</ul>
 								</div>
 							</div>
-						</c:forEach>
             </div><!-- End testimonial item -->
+						</c:forEach>
 
 			<!--
             <div class="swiper-slide">
@@ -662,8 +663,8 @@
 
       <div class="container" data-aos="fade-up">
         <div class="section-title">
-          <h2>Gallery</h2>
-          <p>Some photos from Our Restaurant</p>
+          <h2>Gallerie</h2>
+          <p>Quelques photos de notre Hôtel</p>
         </div>
       </div>
 
@@ -671,69 +672,24 @@
 
         <div class="row g-0">
 
+		<c:forEach var="chambre" items="${chambres}">
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-1.jpg" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="assets/img/gallery/gallery-1.jpg" alt="" class="img-fluid">
+              <a href="${chambre.image_url }" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="${chambre.image_url }" alt="" class="img-fluid">
               </a>
             </div>
           </div>
-
+		</c:forEach>
+		<c:forEach var="categorie" items="${categories}">
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-2.jpg" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="assets/img/gallery/gallery-2.jpg" alt="" class="img-fluid">
+              <a href="${categorie.image_url }" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="${categorie.image_url }" alt="" class="img-fluid">
               </a>
             </div>
           </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-3.jpg" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="assets/img/gallery/gallery-3.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-4.jpg" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="assets/img/gallery/gallery-4.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-5.jpg" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="assets/img/gallery/gallery-5.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-6.jpg" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="assets/img/gallery/gallery-6.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-7.jpg" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="assets/img/gallery/gallery-7.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4">
-            <div class="gallery-item">
-              <a href="assets/img/gallery/gallery-8.jpg" class="gallery-lightbox" data-gall="gallery-item">
-                <img src="assets/img/gallery/gallery-8.jpg" alt="" class="img-fluid">
-              </a>
-            </div>
-          </div>
+		</c:forEach>
 
         </div>
 
@@ -741,7 +697,7 @@
     </section><!-- End Gallery Section -->
 
     <!-- ======= Chefs Section ======= -->
-    <section id="chefs" class="chefs">
+    <section id="#categories" class="chefs">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -751,27 +707,28 @@
 
         <div class="row">
 
-		<c:forEach var="categorie" items="${categories}">
+		<c:forEach var="c" items="${categories}">
 		
           <div class="col-lg-4 col-md-6">
             <div class="member" data-aos="zoom-in" data-aos-delay="100">
-              <img src="${ categorie.image_url }" class="img-fluid" alt="">
+              <img src="${ c.image_url }" class="img-fluid" alt="">
               <div class="member-info">
                 <div class="member-info-content">
-                  <h4>${ categorie.libelle }</h4>
-                  <span>${ categorie.tarif } dirhams</span>
+                  <h4>${ c.libelle }</h4>
+                  <span>${ c.tarif }</span>
                 </div>
                 <div class="social">
-                  <a class="btn btn-danger btn-xs" href="/Hotel-Reservation-JEE/categories/chambres?id=${categorie.id}">
-						Découvrir
-						<i class="bi bi-check-circled"></i>
-					</a>
-                <!--
+                <a class="btn btn-danger btn-xs"
+											href="/Hotel-Reservation-JEE/categories/chambres?id=${c.id}">Voir les chambres<i
+												class="bi bi-check-circled"></i>
+										</a>
+										<!-- 
                   <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
                   <a href=""><i class="bi bi-instagram"></i></a>
                   <a href=""><i class="bi bi-linkedin"></i></a>
-                  -->
+										 -->
+     
                 </div>
               </div>
             </div>

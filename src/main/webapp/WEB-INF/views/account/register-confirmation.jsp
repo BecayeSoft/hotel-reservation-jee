@@ -8,5 +8,10 @@
 </head>
 <body>
 
+	<h1>
+		Votre compte a bien été enregistré !
+		<a href="http://localhost:8080/Hotel-Reservation-JEE">Continuer</a>
+		
+	</h1>
 </body>
 </html>

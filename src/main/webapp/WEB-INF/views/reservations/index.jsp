@@ -45,12 +45,12 @@
 </head>
 <body>
 	<!-- ======= Events Section ======= -->
-	<section id="events" class="events">
+	<section style="width: 80%; margin: auto;" id="events" class="events">
 		<div class="container" data-aos="">
 
 			<div class="section-title">
-				<h2>Catégories</h2>
-				<p>Jetez un coup d'oeil à nos catégories</p>
+				<h2>Liste des réservations</h2>
+				<p>Réservations effectuées</p>
 			</div>
 
 			<div class="events-slider swiper" data-aos="" data-aos-delay="100">
@@ -59,28 +59,34 @@
 					<!-- Categorie item -->
 					<div class="swiper-slide">
 						<!-- Categorie item -->
-						<c:forEach var="c" items="${categories}">
-							<div class="row event-item" style="margin-bottom: 5rem;">
+						<c:forEach var="r" items="${reservations}">
+							<div class="row event-item"
+								style="margin-bottom: 5rem; display: flex;">
 								<div class="col-lg-6">
-									<img
-										src="${ c.image_url }"
+									<img style="width: 90%;" src="${r.chambre.image_url}"
 										class="img-fluid" alt="">
 								</div>
 								<div class="col-lg-6 pt-4 pt-lg-0 content">
-									<h3>${c.libelle}</h3>
+									<h3>Réservation</h3>
 									<div class="price">
 										<p>
-											<span>${c.tarif} dirhams</span>
+											<span>${r.montant} dirhams</span>
 										</p>
 									</div>
-									<p class="fst-italic">${c.description}</p>
+									<p class="fst-italic">${chambre.categorie.description}</p>
 
 									<ul>
-										<li><a class="btn btn-danger btn-xs"
-											href="/Hotel-Reservation-JEE/categories/chambres?id=${c.id}">Voir les chambres<i
-												class="bi bi-check-circled"></i>
-										</a></li>
+										<li>Effectuée le: ${r.dateReservation}</li>
+										<li>Date d'entrée: ${r.dateEntree}</li>
+										<li>Date de sortie: ${r.dateSortie}</li>
 									</ul>
+
+									<div>
+										<a class="btn btn-danger btn-xs"
+											href="/Hotel-Reservation-JEE/reservations/details?id=${r.id}"> <i
+											class="bi bi-check-circled">Détails</i>
+										</a>
+									</div>
 								</div>
 							</div>
 						</c:forEach>
@@ -94,5 +100,10 @@
 		</div>
 	</section>
 	<!-- End Events Section -->
+
+	<footer>
+		<a href="https://www.flaticon.com/free-icons/hotel"
+			title="hotel icons">Hotel icons created by Flat Icons - Flaticon</a>
+	</footer>
 </body>
 </html>

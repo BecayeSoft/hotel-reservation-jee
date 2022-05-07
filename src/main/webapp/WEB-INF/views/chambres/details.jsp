@@ -43,47 +43,58 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
-<body>
+<body style="background: rgba(0, 0, 0, 0.94); color: white;">
 	<!-- ======= Events Section ======= -->
-	<section id="events" class="events">
+	<section style="width: 80%; margin: auto;" id="events" class="events">
 		<div class="container" data-aos="">
 
 			<div class="section-title">
-				<h2>Catégories</h2>
-				<p>Jetez un coup d'oeil à nos catégories</p>
+				<h2>Chambre</h2>
+				<h3>En savoir plus sur cette chambre</h3>
 			</div>
 
 			<div class="events-slider swiper" data-aos="" data-aos-delay="100">
 				<div class="swiper-wrapper">
 
-					<!-- Categorie item -->
+					<!-- Chambre item -->
 					<div class="swiper-slide">
-						<!-- Categorie item -->
-						<c:forEach var="c" items="${categories}">
-							<div class="row event-item" style="margin-bottom: 5rem;">
-								<div class="col-lg-6">
-									<img
-										src="${ c.image_url }"
-										class="img-fluid" alt="">
+						<!-- Chambre item -->
+						
+						<c:set var="chambre" value="${chambre}" scope="page" />
+						
+						<div class="row event-item" style="margin-bottom: 5rem;">
+							<div class="col-lg-6">
+								<img src="${chambre.image_url}" class="img-fluid" alt="">
+							</div>
+							<div class="col-lg-6 pt-4 pt-lg-0 content">
+								<h3>${chambre.categorie.libelle}</h3>
+								<div class="price">
+									<p>
+										<span>${chambre.categorie.tarif} dirhams</span>
+									</p>
 								</div>
-								<div class="col-lg-6 pt-4 pt-lg-0 content">
-									<h3>${c.libelle}</h3>
-									<div class="price">
-										<p>
-											<span>${c.tarif} dirhams</span>
-										</p>
-									</div>
-									<p class="fst-italic">${c.description}</p>
+								<p class="fst-italic">${chambre.categorie.description}</p>
 
-									<ul>
-										<li><a class="btn btn-danger btn-xs"
-											href="/Hotel-Reservation-JEE/categories/chambres?id=${c.id}">Voir les chambres<i
-												class="bi bi-check-circled"></i>
-										</a></li>
-									</ul>
+								<h4>Options disponibles :</h4>
+								<ul>
+									<c:if test="${chambre.hasBalcon}">
+										<li>Balcon</li>
+									</c:if>
+									<c:if test="${chambre.hasCuisine}">
+										<li>Cuisine</li>
+									</c:if>
+									<c:if test="${chambre.hasVue_sur_mer}">
+										<li>Vue sur mer</li>
+									</c:if>
+								</ul>
+
+								<div style="background: #d71f27b3;width: 74px;height: 30px;display: flex;justify-content: center;align-items: center;">
+									<a class="btn btn-danger btn-xs" href="/Hotel-Reservation-JEE/reservations/new?id_chambre=${chambre.id}" style="color: white;text-decoration: none;">
+											<i class="bi bi-check-circled" style="">Réserver</i>
+									</a>
 								</div>
 							</div>
-						</c:forEach>
+						</div>
 					</div>
 					<!-- End testimonial item -->
 

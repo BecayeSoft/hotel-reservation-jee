@@ -33,18 +33,6 @@
   	<servlet-class>com.hotel.controllers.Controller</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>OptionController</servlet-name>
-  	<display-name>OptionController</display-name>
-  	<description></description>
-  	<servlet-class>com.hotel.controllers.OptionController</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>PersonneController</servlet-name>
-  	<display-name>PersonneController</display-name>
-  	<description></description>
-  	<servlet-class>com.hotel.controllers.PersonneController</servlet-class>
-  </servlet>
-  <servlet>
   	<servlet-name>ReservationController</servlet-name>
   	<display-name>ReservationController</display-name>
   	<description></description>
@@ -55,6 +43,12 @@
   	<display-name>UserController</display-name>
   	<description></description>
   	<servlet-class>com.hotel.controllers.UserController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>HomeController</servlet-name>
+  	<display-name>HomeController</display-name>
+  	<description></description>
+  	<servlet-class>com.hotel.controllers.HomeController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>CategorieController</servlet-name>
@@ -69,14 +63,6 @@
   	<url-pattern>/Controller</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>OptionController</servlet-name>
-  	<url-pattern>/OptionController</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>PersonneController</servlet-name>
-  	<url-pattern>/PersonneController</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
   	<servlet-name>ReservationController</servlet-name>
   	<url-pattern>/ReservationController</url-pattern>
   </servlet-mapping>
@@ -84,4 +70,12 @@
   	<servlet-name>UserController</servlet-name>
   	<url-pattern>/UserController</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>HomeController</servlet-name>
+  	<url-pattern>/HomeController</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+	  <welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>
