@@ -20,7 +20,6 @@ public class Categorie {
 	@Column(length = 64)
 	private int id;
 	
-	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "categorie")
 	private Collection<Chambre> chambres;
 	
@@ -37,21 +36,22 @@ public class Categorie {
 	private Collection<Chambre> chambres;
 	*/
 
-	String libelle;
+	private String libelle;
+	private double tarif;
+	private String description;
+	private String image_url;
 	
-	double tarif;
-	
-	String description;
-	
+
 	public Categorie() {}
 	
-	public Categorie(int idCategorie, String libelle, Collection<Chambre> chambres, double tarif, String description) {
+	public Categorie(int idCategorie, String libelle, Collection<Chambre> chambres, double tarif, String description, String image_url) {
 		super();
 		this.id = idCategorie;
 		this.libelle = libelle;
 		this.chambres = chambres;
 		this.tarif = tarif;
 		this.description = description;
+		this.image_url = image_url;
 	}
 	
 	
@@ -91,5 +91,23 @@ public class Categorie {
 		this.description = description;
 	}
 	
+	public String getImage_url() {
+		return image_url;
+	}
+
+	public void setImage_url(String image_url) {
+		this.image_url = image_url;
+	}
 	
+	@Override
+	public String toString() {
+		return "\n-----------------\nCategorie\n-----------------"
+				+ "\nid: " + this.id
+				+ "\nchambres: " + this.chambres
+				+ "\nlibellé: " + this.libelle
+				+ "\ndescription: " + this.description
+				+ "\ntarif: " + this.tarif
+				+ "\nimage: " + this.image_url
+				;
+	}
 }

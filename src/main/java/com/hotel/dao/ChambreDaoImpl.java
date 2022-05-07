@@ -2,11 +2,13 @@ package com.hotel.dao;
 
 import java.util.List;
 
+import com.hotel.models.Categorie;
 import com.hotel.models.Chambre;
 import com.hotel.utils.Helpers;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Query;
 
 public class ChambreDaoImpl implements Dao<Chambre> {
 
@@ -19,6 +21,26 @@ public class ChambreDaoImpl implements Dao<Chambre> {
 	}
 
 	@SuppressWarnings("unchecked")
+	public List<Chambre> getByCategory(int id) {
+		EntityManager em = null;
+		List<Chambre> obj = null;
+		
+		CategorieDaoImpl catDao = new CategorieDaoImpl();
+		Categorie categorie = catDao.getById(id);
+		
+		em = factory.createEntityManager();
+		Query query = em.createQuery("SELECT c FROM Chambre c WHERE c.categorie.id=:id");
+		query.setParameter("id", categorie.getId()); 
+		obj = query.getResultList();
+
+		System.out.println("\n\n------------------\nChambres by categories\n------------------");
+		obj.forEach(chambre -> System.out.println(chambre));
+		//obj.forEach(System.out::println);
+		
+		return obj;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<Chambre> getAll() {
 		EntityManager em = null;
 		List<Chambre> obj = null;
@@ -30,7 +52,7 @@ public class ChambreDaoImpl implements Dao<Chambre> {
 		return obj;
 	}
 
-	public Chambre getById(String id) {
+	public Chambre getById(int id) {
 		Chambre obj;
 		EntityManager em = factory.createEntityManager();
 		em.getTransaction().begin();

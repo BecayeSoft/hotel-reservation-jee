@@ -31,7 +31,7 @@ public class CategorieDaoImpl implements Dao<Categorie> {
 		return obj;
 	}
 
-	public Categorie getById(String id) {
+	public Categorie getById(int id) {
 		Categorie obj;
 		EntityManager em = factory.createEntityManager();
 		em.getTransaction().begin();

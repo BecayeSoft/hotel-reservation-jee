@@ -15,12 +15,13 @@ import com.hotel.models.User;
 /**
  * Servlet implementation class UserController
  */
-@WebServlet(urlPatterns = { "/users", "/users/new", "/users/save", "/users/edit",
-"/users/delete" })
+@WebServlet(urlPatterns = { "/account/new", "/account/save", "/account/login" })
 public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final String CATEGORIE_INDEX = "/WEB-INF/views/users/index.jsp";
-	private final String CATEGORIE_FORM = "/WEB-INF/views/users/personne-form.jsp";
+	private final String REGISTER_FORM = "/WEB-INF/views/account/register-form.jsp";
+	private final String LOGIN_FORM = "/WEB-INF/views/account/login-form.jsp";
+	//private final String HOME = "/WEB-INF/views/home/index.jsp";
+	private final String REGISTER_CONFIRMATION = "/WEB-INF/views/account/register-confirmation.jsp";
 	private UserDaoImpl dao;  
     
 	/**
@@ -38,24 +39,15 @@ public class UserController extends HttpServlet {
 		RequestDispatcher dispatcher = null;
 		
 		if (request.getRequestURI().endsWith("new")) {
-			dispatcher = request.getRequestDispatcher(CATEGORIE_FORM);
-		} 
-		else if (request.getRequestURI().endsWith("edit")) {
-			String id = request.getParameter("id");
-			User obj = dao.getById(id);
-			request.setAttribute("personne", obj);
-			dispatcher = request.getRequestDispatcher(CATEGORIE_FORM);
-		} 
-		else if (request.getRequestURI().endsWith("delete")) {
-			String id = request.getParameter("id");
-			User obj = dao.getById(id);
-			dao.delete(obj);
-			request.setAttribute("users", dao.getAll());
-			dispatcher = request.getRequestDispatcher(CATEGORIE_INDEX);
-		} 
+			dispatcher = request.getRequestDispatcher(REGISTER_FORM);
+		}
+		else if (request.getRequestURI().endsWith("login")) {
+			dispatcher = request.getRequestDispatcher(LOGIN_FORM);
+		}
 		else {
-			request.setAttribute("users", dao.getAll());
-			dispatcher = request.getRequestDispatcher(CATEGORIE_INDEX);
+			System.err.println("Route non implémentée -> UserController ");
+			dispatcher = request.getRequestDispatcher(REGISTER_CONFIRMATION);
+			//response.sendRedirect(HOME_PAGE);
 		}
 		dispatcher.forward(request, response);
 	}
@@ -64,22 +56,22 @@ public class UserController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		User obj = new User();
-		/*
-		obj.setDescription(request.getParameter("description"));
-		obj.setLibelle(request.getParameter("libelle"));
-		obj.setNb_chambres(Integer.valueOf(request.getParameter("nb_chambres")));
-		obj.setTarif(Double.valueOf(request.getParameter("tarif")));
-		*/
-
-		if (request.getParameter("id") == null || request.getParameter("id").isEmpty()) {
-			dao.create(obj);
-		} 
-		else {
-			String id = request.getParameter("id");
-			obj.setId(id);
-			dao.update(obj);
-		}
+		User user = new User();
+		
+		user.setAge(Integer.parseInt(request.getParameter("age")));
+		user.setEmail(request.getParameter("email"));
+		user.setNom(request.getParameter("nom"));
+		user.setPassword(request.getParameter("password"));
+		user.setSexe(request.getParameter("sexe").charAt(0));
+		user.setTelephone(request.getParameter("telephone"));
+		user.setUsername(request.getParameter("username"));
+		
+		user.setPrivilege("client");
+		
+		System.out.println(user);
+		
+		dao.saveUser(user);
+	
 		doGet(request, response);
 	}
 

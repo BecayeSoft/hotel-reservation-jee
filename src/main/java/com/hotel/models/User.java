@@ -14,24 +14,22 @@ public class User {
 	private int id;
 	
 	private String nom; 
-	private String prenom; 
 	private String email; 
 	private String telephone; 
 	private String username;
 	private String password;
 	private int age;
-	private String sexe; 
+	private char sexe; 
 	private String privilege;
 	
 		
 	public User() {}
 
-	public User(int id, String nom, String prenom, String email, String telephone, String username, String password,
-			int age, String sexe, String privilege) {
+	public User(int id, String nom, String email, String telephone, String username, String password,
+			int age, char sexe, String privilege) {
 		super();
 		this.id = id;
 		this.nom = nom;
-		this.prenom = prenom;
 		this.email = email;
 		this.telephone = telephone;
 		this.username = username;
@@ -60,17 +58,6 @@ public class User {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
-
-	public String getPrenom() {
-		return prenom;
-	}
-
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
 
 	public String getEmail() {
 		return email;
@@ -122,12 +109,12 @@ public class User {
 	}
 
 
-	public String getSexe() {
+	public char getSexe() {
 		return sexe;
 	}
 
 
-	public void setSexe(String sexe) {
+	public void setSexe(char sexe) {
 		this.sexe = sexe;
 	}
 
@@ -139,6 +126,24 @@ public class User {
 
 	public void setPrivilege(String privilege) {
 		this.privilege = privilege;
+	}
+	
+	
+	// toString
+	@Override
+	public String toString() {
+		return "---------------------------------\n"
+				+ "User"
+				+ "---------------------------------\n"
+				+ "nom: " + this.nom
+				+ "username: " + this.username
+				+ "email: " + this.email
+				+ "password: " + this.password
+				+ "age: " + this.age
+				+ "sexe: " + this.sexe
+				+ "telephone: " + this.telephone
+				+ "privilege: " + this.privilege
+				;
 	}
 
 }

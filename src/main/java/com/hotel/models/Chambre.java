@@ -22,32 +22,35 @@ public class Chambre {
 	private Categorie categorie;
 	
 	/*
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "id_categorie")
-	private Categorie categorie;
-	*/
-	
-	/*
 	@OneToMany
 	@JoinColumn(name = "id")
 	private List<Reservation> reservations;
 	*/
 
-	private boolean isAvailable;
+	private boolean isAvailable = true;
 	private boolean hasBalcon;
 	private boolean hasCuisine;
+	private boolean hasVue_sur_mer;
+	private String image_url;
+	
 	
 	public Chambre() {}
 	
-	public Chambre(int id, Categorie categorie, boolean isAvailable, boolean hasBalcon, boolean hasCuisine) {
+	
+	public Chambre(int id, Categorie categorie, boolean isAvailable, boolean hasBalcon, boolean hasCuisine,
+			boolean hasVue_sur_mer, String image_url) {
 		super();
 		this.id = id;
 		this.categorie = categorie;
 		this.isAvailable = isAvailable;
 		this.hasBalcon = hasBalcon;
 		this.hasCuisine = hasCuisine;
+		this.hasVue_sur_mer = hasVue_sur_mer;
+		this.image_url = image_url;
 	}
-	
+
+
+
 	public int getId() {
 		return id;
 	}
@@ -77,6 +80,53 @@ public class Chambre {
 	}
 	public void hasCuisine(boolean hasCuisine) {
 		this.hasCuisine = hasCuisine;
+	}
+
+	public boolean isHasBalcon() {
+		return hasBalcon;
+	}
+
+	public void setHasBalcon(boolean hasBalcon) {
+		this.hasBalcon = hasBalcon;
+	}
+
+	public boolean isHasCuisine() {
+		return hasCuisine;
+	}
+
+	public void setHasCuisine(boolean hasCuisine) {
+		this.hasCuisine = hasCuisine;
+	}
+
+	public boolean isHasVue_sur_mer() {
+		return hasVue_sur_mer;
+	}
+
+	public void setHasVue_sur_mer(boolean hasVue_sur_mer) {
+		this.hasVue_sur_mer = hasVue_sur_mer;
+	}
+	
+	public String getImage_url() {
+		return image_url;
+	}
+
+	public void setImage_url(String image_url) {
+		this.image_url = image_url;
+	}
+
+
+	// toString
+	@Override
+	public String toString() {
+		return "\n-----------------\nChambre\n-----------------"
+				+"id: " + this.id 
+				+ "\nCategorie: " + this.categorie 
+				+ "\nhasBalcon: " + this.hasBalcon 
+				+ "\nhasCuisine: " + this.hasCuisine 
+				+ "\nhasVue_sur_mer: " + this.hasVue_sur_mer 
+				+ "\nisAvailable: " + this.isAvailable
+				+ "\nimage_url: " + this.image_url
+				;
 	}
 	
 }
