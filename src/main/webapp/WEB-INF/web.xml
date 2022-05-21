@@ -4,77 +4,116 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  
+  <!-- Filter  -->
   <filter>
   	<filter-name>LoginFilter</filter-name>
   	<display-name>LoginFilter</display-name>
   	<description></description>
-  	<filter-class>filter.LoginFilter</filter-class>
+  	<filter-class>com.hotel.filter.LoginFilter</filter-class>
   </filter>
+  <filter>
+  	<filter-name>CRUDFilter</filter-name>
+  	<display-name>CRUDFilter</display-name>
+  	<description></description>
+  	<filter-class>com.hotel.filter.CRUDFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>CRUDFilter</filter-name>
+  	<url-pattern>/categories/new</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+  	<filter-name>CRUDFilter</filter-name>
+  	<url-pattern>/chambres/new</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+  	<filter-name>CRUDFilter</filter-name>
+  	<url-pattern>/reservations</url-pattern>
+  </filter-mapping>
+  
   <filter-mapping>
   	<filter-name>LoginFilter</filter-name>
-  	<url-pattern>/LoginFilter</url-pattern>
+  	<url-pattern>/reservations/new</url-pattern>
   </filter-mapping>
+  
+  
+    <!-- Categorie  -->
   <servlet>
   	<servlet-name>CategorieController</servlet-name>
   	<display-name>CategorieController</display-name>
   	<description></description>
   	<servlet-class>com.hotel.controllers.CategorieController</servlet-class>
   </servlet>
+      
+  <servlet-mapping>
+  	<servlet-name>CategorieController</servlet-name>
+  	<url-pattern>/CategorieController</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Chambre -->
   <servlet>
   	<servlet-name>ChambreController</servlet-name>
   	<display-name>ChambreController</display-name>
   	<description></description>
   	<servlet-class>com.hotel.controllers.ChambreController</servlet-class>
   </servlet>
-  <servlet>
-  	<servlet-name>Controller</servlet-name>
-  	<display-name>Controller</display-name>
-  	<description></description>
-  	<servlet-class>com.hotel.controllers.Controller</servlet-class>
-  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ChambreController</servlet-name>
+  	<url-pattern>/ChambreController</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Reservation -->
   <servlet>
   	<servlet-name>ReservationController</servlet-name>
   	<display-name>ReservationController</display-name>
   	<description></description>
   	<servlet-class>com.hotel.controllers.ReservationController</servlet-class>
   </servlet>
+ 
+  <servlet-mapping>
+  	<servlet-name>ReservationController</servlet-name>
+  	<url-pattern>/ReservationController</url-pattern>
+  </servlet-mapping>
+  
+  <!-- User -->
   <servlet>
   	<servlet-name>UserController</servlet-name>
   	<display-name>UserController</display-name>
   	<description></description>
   	<servlet-class>com.hotel.controllers.UserController</servlet-class>
   </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>UserController</servlet-name>
+  	<url-pattern>/UserController</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Home -->
   <servlet>
   	<servlet-name>HomeController</servlet-name>
   	<display-name>HomeController</display-name>
   	<description></description>
   	<servlet-class>com.hotel.controllers.HomeController</servlet-class>
   </servlet>
-  <servlet-mapping>
-  	<servlet-name>CategorieController</servlet-name>
-  	<url-pattern>/CategorieController</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>ChambreController</servlet-name>
-  	<url-pattern>/ChambreController</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>Controller</servlet-name>
-  	<url-pattern>/Controller</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>ReservationController</servlet-name>
-  	<url-pattern>/ReservationController</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>UserController</servlet-name>
-  	<url-pattern>/UserController</url-pattern>
-  </servlet-mapping>
+  <servlet>
+  	<servlet-name>UnauthorizedController</servlet-name>
+  	<display-name>UnauthorizedController</display-name>
+  	<description></description>
+  	<servlet-class>com.hotel.controllers.UnauthorizedController</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
   	<servlet-name>HomeController</servlet-name>
   	<url-pattern>/HomeController</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UnauthorizedController</servlet-name>
+  	<url-pattern>/UnauthorizedController</url-pattern>
+  </servlet-mapping>
   
+
   <welcome-file-list>
 	  <welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>

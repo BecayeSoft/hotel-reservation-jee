@@ -8,9 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
 
 @Entity
 public class Reservation {
@@ -141,7 +139,7 @@ public class Reservation {
 	@Override
 	public String toString() {
 		return "\n-----------------\nRéservation\n-----------------" 
-				+ "id: " + this.id 
+				+ "\nid: " + this.id 
 				+ "\nChambre: " + this.chambre
 				+ "\nuser: " + this.user
 				+ "\ndateEntree: " + this.dateEntree

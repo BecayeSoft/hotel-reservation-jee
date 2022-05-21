@@ -44,40 +44,59 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
-<body>
+<body style="background: rgba(0, 0, 0, 0.94); color: white;">
 	<!-- ======= Events Section ======= -->
 	<section style="width: 80%; margin: auto;" id="events" class="events">
+	
 		<div class="container" data-aos="">
 
 			<div class="section-title">
-				<h2>Liste des réservations</h2>
-				<p>Réservations effectuées</p>
+				<h2>Réservation</h2>
+				<h3>En savoir plus sur cette réservation</h3>
 			</div>
 
 			<div class="events-slider swiper" data-aos="" data-aos-delay="100">
 				<div class="swiper-wrapper">
 
-					<!-- Categorie item -->
 					<div class="swiper-slide">
-						<!-- Categorie item -->
-						<c:forEach var="r" items="${reservations}">
-							<div class="row event-item"
-								style="margin-bottom: 5rem; display: flex;">
-								<div style="flex-basis:50%" class="col-lg-6">
-									<img style="width: 90%;" src="${r.chambre.image_url}"
-										class="img-fluid" alt="">
+					
+					<!-- Chambre item -->
+		
+						<c:set var="r" value="${reservation}" scope="page" />
+						
+						<div class="row event-item" style="margin-bottom: 5rem;">
+							<div class="col-lg-6">
+								<img style="height:350px;" src="${r.chambre.categorie.image_url}" class="img-fluid" alt="">
+							</div>
+							<div class="col-lg-6 pt-4 pt-lg-0 content">
+								<h3 style="text-transform: uppercase;">
+									<c:if test = "${isFemale}">Madame</c:if>
+									<c:if test = "${!isFemale}">Monsieur</c:if>
+									${r.user.nom}
+								</h3>
+								<div class="price">
+									<p>
+										Numéro de téléphone : <span>${r.user.telephone}</span>
+									</p>
+									<p>
+										Email: <span>${r.user.email}</span>
+									</p>
+									<h4>------------------------------------------------------</h4>
+									<p>
+										Chambre : <span>${r.chambre.categorie.libelle}</span>
+									</p>
+									<p>
+										Montant : <span>${r.montant} dirhams</span>
+									</p>
+									<p>
+										Nombre de personnes : <span>${r.nb_personnes}</span>
+									</p>
 								</div>
-								<div class="col-lg-6 pt-4 pt-lg-0 content">
-									<h3>Réservation</h3>
-									<div class="price">
-										<p>
-											<span>${r.montant} dirhams</span>
-										</p>
-									</div>
-									<p class="fst-italic">${chambre.categorie.description}</p>
-
-									<ul>
-										<li>Effectuée le:
+								<p class="fst-italic">Message laissé par l'utilisateur : ${r.message}</p>
+								<h4>------------------------------------------------------</h4>
+								<h4>Dates :</h4>
+								<ul>
+										<li>Effectuée le :
 											<fmt:parseDate  value="${r.dateReservation}"  type="date" pattern="yyyy-MM-dd" var="parsedDate" />
 											<fmt:formatDate value="${parsedDate}" type="date" pattern="dd/MM/yyyy à hh:mm" var="formarttedDate" />
 											<c:out value="${ formarttedDate }"></c:out>
@@ -87,36 +106,29 @@
 											<fmt:formatDate value="${parsedDate}" type="date" pattern="dd/MM/yyyy" var="formarttedDate" />
 											<c:out value="${ formarttedDate }"></c:out>
 										</li>
-										<li>Effectuée le:
+										<li>Date de sortie le:
 											<fmt:parseDate  value="${r.dateSortie}"  type="date" pattern="yyyy-MM-dd" var="parsedDate" />
 											<fmt:formatDate value="${parsedDate}" type="date" pattern="dd/MM/yyyy" var="formarttedDate" />
 											<c:out value="${ formarttedDate }"></c:out>
 										</li>
 									</ul>
 
-									<div>
-										<a class="btn btn-danger btn-xs"
-											href="/Hotel-Reservation-JEE/reservations/details?id=${r.id}"> <i
-											class="bi bi-check-circled">Détails</i>
-										</a>
-									</div>
+								<div style="background: #d71f27b3;width: 74px;height: 30px;display: flex;justify-content: center;align-items: center;">
+									<a class="btn btn-danger btn-xs" href="/Hotel-Reservation-JEE/reservations/delete?id=${r.id}" style="color: white;text-decoration: none;">
+											<i class="bi bi-check-circled" style="">Supprimer</i>
+									</a>
 								</div>
 							</div>
-						</c:forEach>
+						</div>
 					</div>
-					<!-- End testimonial item -->
+					<!-- End reservation item  -->
 
 				</div>
 				<div class="swiper-pagination"></div>
 			</div>
 
-		</div>
+ 		</div>
 	</section>
 	<!-- End Events Section -->
-
-	<footer>
-		<a href="https://www.flaticon.com/free-icons/hotel"
-			title="hotel icons">Hotel icons created by Flat Icons - Flaticon</a>
-	</footer>
 </body>
 </html>

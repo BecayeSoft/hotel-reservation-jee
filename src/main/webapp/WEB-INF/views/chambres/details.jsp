@@ -64,7 +64,7 @@
 						
 						<div class="row event-item" style="margin-bottom: 5rem;">
 							<div class="col-lg-6">
-								<img src="${chambre.image_url}" class="img-fluid" alt="">
+								<img style="width:50%" src="${chambre.image_url}" class="img-fluid" alt="">
 							</div>
 							<div class="col-lg-6 pt-4 pt-lg-0 content">
 								<h3>${chambre.categorie.libelle}</h3>

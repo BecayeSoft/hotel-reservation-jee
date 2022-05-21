@@ -38,6 +38,7 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  
 </head>
 
 <body>
@@ -47,14 +48,21 @@
     <div class="container d-flex justify-content-center justify-content-md-between">
 
       <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-phone d-flex align-items-center"><span>+1 5589 55488 55</span></i>
-        <i class="bi bi-clock d-flex align-items-center ms-4"><span> Mon-Sat: 11AM - 23PM</span></i>
+        <i class="bi bi-phone d-flex align-items-center"><span>+212 615 201 152</span></i>
+        <i class="bi bi-clock d-flex align-items-center ms-4"><span> 24h/24 - 7j/7</span></i>
       </div>
 
       <div class="languages d-none d-md-flex align-items-center">
         <ul>
-          <li>En</li>
-          <li><a href="#">De</a></li>
+        	<c:if test="${ isConnected == true }">
+          		<li><a href="/Hotel-Reservation-JEE/account/logout">Se déconnecter</a></li>
+          	</c:if>
+         	<c:if test="${ isConnected == false }">
+          		<li><a href="/Hotel-Reservation-JEE/account/login">Se connecter</a></li>
+          	</c:if>
+          	 <c:if test="${ isConnected == false }">
+          		<li><a href="/Hotel-Reservation-JEE/account/signup">Créer un compte</a></li>
+          	</c:if>
         </ul>
       </div>
     </div>
@@ -71,8 +79,9 @@
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">A propos</a></li>
-          <li><a class="nav-link scrollto" href="#categories">Catégories</a></li>
+          <li><a href="#categories">Catégories</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+<!--           <li><a class="nav-link scrollto" href="/Hotel-Reservation-JEE/categories">Catégories</a></li> -->
           
           <!--
           <li><a class="nav-link scrollto" href="menu">menu</a></li>
@@ -103,8 +112,9 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-      <a href="#book-a-room" class="book-a-table-btn scrollto d-none d-lg-flex">Réserver une chambre</a>
-
+      <c:if test="${ isAdmin }">
+      	<a href="/Hotel-Reservation-JEE/admin">Espace Administrateur</a>
+      </c:if>
     </div>
   </header><!-- End Header -->
 
@@ -113,12 +123,12 @@
     <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
       <div class="row">
         <div class="col-lg-8">
-          <h1>Bienvenue à l'Hôtel<span>Al Ribat</span></h1>
+          <h1>Bienvenue à l'Hôtel <span>Al Ribat</span></h1>
           <h2>En service depuis plus de 18 ans!</h2>
 
           <div class="btns">
-            <a href="#categorie" class="btn-menu animated fadeInUp scrollto">Notes Categories</a>
-            <a href="#book-a-table" class="btn-book animated fadeInUp scrollto">Réserver une chambre</a>
+            <a href="#categories" class="btn-book animated fadeInUp scrollto">Nos catégories</a>
+<!--             <a href="#book-a-table" class="btn-book animated fadeInUp scrollto">Réserver une chambre</a> -->
           </div>
         </div>
         <div class="col-lg-4 d-flex align-items-center justify-content-center position-relative" data-aos="zoom-in" data-aos-delay="200">
@@ -421,7 +431,7 @@
     </section><!-- End Specials Section -->
 
     <!-- ======= Events Section ======= -->
-    <section id="events" class="events">
+    <section id="categories" class="events">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -568,7 +578,7 @@
             <div class="error-message"></div>
             <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
           </div>
-          <div class="text-center"><button type="submit">Book a Table</button></div>
+          <div class="text-center"><button type="submit">Valider</button></div>
         </form>
 
       </div>
@@ -663,7 +673,7 @@
 
       <div class="container" data-aos="fade-up">
         <div class="section-title">
-          <h2>Gallerie</h2>
+          <h2 id="galerie">Gallerie</h2>
           <p>Quelques photos de notre Hôtel</p>
         </div>
       </div>
@@ -799,8 +809,9 @@
             <div class="info">
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
-                <h4>Location:</h4>
-                <p>A108 Adam Street, New York, NY 535022</p>
+                <h4>Adresse:</h4>
+                <p>Agdal Avenue de France<br>
+                Rabat, Maroc</p>
               </div>
 
               <div class="open-hours">
@@ -815,13 +826,13 @@
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>info@example.com</p>
+                <p>hotel.alribat@example.com</p>
               </div>
 
               <div class="phone">
                 <i class="bi bi-phone"></i>
                 <h4>Call:</h4>
-                <p>+1 5589 55488 55s</p>
+                <p>+212 558 955 488</p>
               </div>
 
             </div>

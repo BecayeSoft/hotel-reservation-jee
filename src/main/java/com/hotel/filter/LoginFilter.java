@@ -1,4 +1,4 @@
-package filter;
+package com.hotel.filter;
 
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -18,13 +18,10 @@ import com.hotel.models.User;
  */
 public class LoginFilter implements Filter {
 	
-	private static final String LOGIN_PAGE = "/HotelReservation-JEE/account/login";
+	private static final String LOGIN_PAGE = "/Hotel-Reservation-JEE/account/login";
 
-    /**
-     * Default constructor. 
-     */
     public LoginFilter() {
-        // TODO Auto-generated constructor stub
+        System.out.println("Hello LoginFilter here!");
     }
 
 	/**
@@ -40,14 +37,17 @@ public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		HttpServletResponse httpServletResponse= (HttpServletResponse) response;
-		HttpSession session = httpServletRequest.getSession();
-		User user = (User) session.getAttribute("user");
 		
+		HttpSession session = httpServletRequest.getSession();
+		
+		User user = (User) session.getAttribute("user");
+
 		if (user == null) {
 			httpServletResponse.sendRedirect(LOGIN_PAGE);
+			response.getWriter().append("Non authenticated: " + user).append(httpServletRequest.getContextPath());
 		}
 		else {			
-			// pass the request along the filter chain
+			// pass the request along the com.hotel.filter chain
 			chain.doFilter(httpServletRequest, response);
 		}
 	}

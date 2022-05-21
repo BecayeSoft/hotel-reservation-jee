@@ -11,11 +11,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.hotel.dao.CategorieDaoImpl;
 import com.hotel.dao.ChambreDaoImpl;
 import com.hotel.dao.ReservationDaoImpl;
-import com.hotel.dao.UserDaoImpl;
 import com.hotel.models.Categorie;
 import com.hotel.models.Chambre;
 import com.hotel.models.Reservation;
@@ -24,13 +24,13 @@ import com.hotel.models.User;
 /**
  * Servlet implementation class ReservationController
  */
-@WebServlet(urlPatterns = { "/reservations", "/reservations/new", "/reservations/save", "/reservations/edit",
+@WebServlet(urlPatterns = { "/reservations", "/reservations/details", "/reservations/new", "/reservations/save", "/reservations/edit",
 "/reservations/delete" })
 public class ReservationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final String INDEX = "/WEB-INF/views/reservations/index.jsp";
 	private final String FORM = "/WEB-INF/views/reservations/reservation-form.jsp";
-	private final String DETAILS = "/WEB-INF/views/reservations/reservation-details.jsp";
+	private final String DETAILS = "/WEB-INF/views/reservations/details.jsp";
 	private ReservationDaoImpl dao;  
 	
 	private int id_chambre_global;
@@ -49,9 +49,20 @@ public class ReservationController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = null;
 		
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		request.setAttribute("user", user);
+		
+		
 		if (request.getRequestURI().endsWith("new")) {
 			System.out.println("New => Id_cambre_global: " + id_chambre_global);
-			id_chambre_global = Integer.parseInt(request.getParameter("id_chambre"));
+			
+			if (request.getParameter("id_chambre") == null) {
+				System.err.print("L'ID de la chambre n'a pas été envoyé en paramètre -> ReservationController.doGet() : at line 56");
+			}
+			else {
+				id_chambre_global = Integer.parseInt(request.getParameter("id_chambre"));
+			}
 			dispatcher = request.getRequestDispatcher(FORM);
 		} 
 		else if (request.getRequestURI().endsWith("edit")) {
@@ -68,13 +79,30 @@ public class ReservationController extends HttpServlet {
 			dispatcher = request.getRequestDispatcher(INDEX);
 		} 
 		else if (request.getRequestURI().endsWith("details")) {
+			System.out.println("Détails");
 			int id = Integer.parseInt(request.getParameter("id"));
 			Reservation obj = dao.getById(id);
 			System.out.println(obj);
+			
+			Chambre c = obj.getChambre();
+			System.out.println(c);
+			
+			User u = obj.getUser();
+			if (u.getSexe() == 'f') {
+				request.setAttribute("isFemale", true);
+			}
+			else {				
+				request.setAttribute("isFemale", false);
+			}
+			
+			System.out.println(obj.getUser());
+			
 			request.setAttribute("reservation", obj);
 			dispatcher = request.getRequestDispatcher(DETAILS);
 		} 
 		else {
+			System.out.println("Test Réservation -> GetFirst");
+			System.out.println(dao.getAll().get(0));
 			request.setAttribute("reservations", dao.getAll());
 			dispatcher = request.getRequestDispatcher(INDEX);
 		}
@@ -88,12 +116,13 @@ public class ReservationController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Reservation obj = new Reservation();
 		
+		// Chambre
 		System.out.println("Id_Chambre: " + id_chambre_global);
 		Chambre chambre = new ChambreDaoImpl().getById( 
 				id_chambre_global
 			);
-		
 		System.out.println(chambre);
+		
 		// Montant
 		Categorie cat = new CategorieDaoImpl().getById(
 				chambre.getCategorie().getId()
@@ -101,20 +130,13 @@ public class ReservationController extends HttpServlet {
 		System.out.println(cat);
 		double montant = cat.getTarif();
 		
-		/*
-		User user = new UserDaoImpl().getById( 
-				Integer.parseInt(request.getParameter("id_user"))
-			);
-		 */
-		User user = new User();
-		user.setId(1);
-		user.setNom(request.getParameter("nom"));
-		user.setEmail(request.getParameter("email"));
-		user.setTelephone(request.getParameter("telephone"));
+		// User
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
 		
-		new UserDaoImpl().saveUser(user);
-		
+		obj.setUser(user);
 
+		// Debugging
 		System.out.println("Parameters:");
 		System.out.println("Id_chambre:" + id_chambre_global);
 		System.out.println("Id_user:" + request.getParameter("id_user"));
@@ -155,7 +177,7 @@ public class ReservationController extends HttpServlet {
 			obj.setActive(true);
 	
 			//Reservation obj
-			System.out.println("Chambre libre => Réservation activatée");
+			System.out.println("Chambre libre => Réservation activatée");	// Activatée WTF Hahhaha
 			System.out.println(obj);
 			
 			dao.create(obj);

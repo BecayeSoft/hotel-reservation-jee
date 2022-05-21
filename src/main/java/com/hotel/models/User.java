@@ -135,14 +135,14 @@ public class User {
 		return "---------------------------------\n"
 				+ "User"
 				+ "---------------------------------\n"
-				+ "nom: " + this.nom
-				+ "username: " + this.username
-				+ "email: " + this.email
-				+ "password: " + this.password
-				+ "age: " + this.age
-				+ "sexe: " + this.sexe
-				+ "telephone: " + this.telephone
-				+ "privilege: " + this.privilege
+				+ "\nnom: " + this.nom
+				+ "\nusername: " + this.username
+				+ "\nemail: " + this.email
+				+ "\npassword: " + this.password
+				+ "\nage: " + this.age
+				+ "\nsexe: " + this.sexe
+				+ "\ntelephone: " + this.telephone
+				+ "\nprivilege: " + this.privilege
 				;
 	}
 

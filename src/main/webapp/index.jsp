@@ -47,14 +47,14 @@
     <div class="container d-flex justify-content-center justify-content-md-between">
 
       <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-phone d-flex align-items-center"><span>+1 5589 55488 55</span></i>
-        <i class="bi bi-clock d-flex align-items-center ms-4"><span> Mon-Sat: 11AM - 23PM</span></i>
+        <i class="bi bi-phone d-flex align-items-center"><span>+212 615 201 152</span></i>
+        <i class="bi bi-clock d-flex align-items-center ms-4"><span> h24 - 7j/7</span></i>
       </div>
 
       <div class="languages d-none d-md-flex align-items-center">
         <ul>
-          <li>En</li>
-          <li><a href="#">De</a></li>
+          <li><a href="/HotelReservation-JEE/account/login">Se connecter</a></li>
+          <li><a href="/HotelReservation-JEE/account/signup">Créer un compte</a></li>
         </ul>
       </div>
     </div>
@@ -64,7 +64,7 @@
   <header id="header" class="fixed-top d-flex align-items-cente">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
 
-      <h1 class="logo me-auto me-lg-0"><a href="index.html">>Al Ribat Hotel<</a></h1>
+      <h1 class="logo me-auto me-lg-0"><a href="index.html">>Al Ribat Hotel</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 

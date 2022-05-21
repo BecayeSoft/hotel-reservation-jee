@@ -58,6 +58,7 @@
   
   <style type="text/css">
   	a {color: white !important;}
+  	
   </style>
   
 </head>
@@ -121,26 +122,11 @@
 
         <div class="section-title">
           <h2>Resérvation</h2>
-          <p>Réserver une chambre</p>
+          <p font-size:20px">Monsieur <strong>${ user.nom }</strong>, veuillez renseigner les informations de la réservation s'il vous plaît.</p>
         </div>
 
         <form method="post" action="save" role="form"
         	class="php-email-form" data-aos="fade-up" data-aos-delay="100">
-          
-		
-          <div class="row">
-            <div class="col-lg-4 col-md-6 form-group">
-              <input type="text" name="nom" class="form-control" id="name" placeholder="Votre nom complet" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Votre email" data-rule="email" data-msg="Please enter a valid email">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-              <input type="text" class="form-control" name="telephone" id="phone" placeholder="Votre numéro de téléphone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
             <div class="col-lg-4 col-md-6 form-group mt-3">
               <input type="date" name="date_entree" class="form-control" id="date" placeholder="Date d'éntrée" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
               <div class="validate"></div>
@@ -154,14 +140,13 @@
               <input type="number" class="form-control" name="nb_personnes" id="people" placeholder="Nombre de personnes" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
               <div class="validate"></div>
             </div>
-          </div>
-          <div class="form-group mt-3">
+          <div style="width:50%" class="form-group mt-3">
             <textarea class="form-control" name="message" rows="5" placeholder="Avez-vous besoin d'une information ?"></textarea>
             <div class="validate"></div>
           </div>
 
           <div class="text-center">
-          <button style="height: 35px;" class="btn-block btn-success" type="submit">Confirmer la réservation</button>
+          <button style="height: 35px; float:right" class="btn btn-warning" type="submit">Confirmer la réservation</button>
           </div>
         </form>
 

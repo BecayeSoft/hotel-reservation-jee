@@ -1,5 +1,9 @@
 package com.hotel.dao;
 
+import java.util.List;
+
+import com.hotel.models.Categorie;
+import com.hotel.models.Chambre;
 import com.hotel.models.User;
 import com.hotel.utils.Helpers;
 
@@ -37,15 +41,24 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User loginUser(String username, String password) {
 		EntityManager em = null;
-		User user = null;
+		List<User> obj = null;
+		
 		em = factory.createEntityManager();
-		em.getTransaction().begin();
+		Query query = em.createQuery("SELECT u FROM User u WHERE u.username=:username AND u.password=:password");
+		query.setParameter("username", username); 
+		query.setParameter("password", password); 
 		
-		Query query = em.createQuery("SELECT u from user WHERE u.username=:username and u.password = :password");
-		query.setParameter("username", user);
-		query.setParameter("username", password);
+		obj = query.getResultList();
 		
-		return user;
+		if (obj.size() == 0) {
+			System.out.println("User not found");
+			return null;
+		}
+		
+		System.out.println("\n-----------------------\nUserDao->Results\n");
+		obj.forEach(System.out::println);
+		
+		return obj.get(0);
 	}
 
 	/**

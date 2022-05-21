@@ -57,11 +57,14 @@ public class ReservationDaoImpl implements Dao<Reservation> {
 
 	public void delete(Reservation obj) {
 		EntityManager em = factory.createEntityManager();
-		em.getTransaction().begin();
 		
-		if(em.contains(obj))
-			obj = em.merge(obj);
-		em.remove(obj);
+		em.getTransaction().begin();
+		Reservation current = null;
+		if (!em.contains(obj)) {
+		    current = em.merge(obj);
+		}
+		
+		em.remove(current);
 		em.getTransaction().commit();
 	}
 
