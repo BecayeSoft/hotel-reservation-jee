@@ -81,6 +81,12 @@
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a href="#categories">Catégories</a></li>
           <li><a href="#galerie">Galerie</a></li>
+          <li>
+		      	<a href="/Hotel-Reservation-JEE/reservations">
+		          	<c:if test="${ isConnected && isAdmin }">Réservations</c:if>
+		          	<c:if test="${ isConnected && !isAdmin }">Mes réservations</c:if>
+		      	</a>
+          </li>
 <!--           <li><a class="nav-link scrollto" href="/Hotel-Reservation-JEE/categories">Catégories</a></li> -->
           
           <!--

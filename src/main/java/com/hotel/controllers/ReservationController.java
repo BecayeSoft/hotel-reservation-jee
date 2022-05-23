@@ -49,6 +49,7 @@ public class ReservationController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = null;
 		
+		// Get the user
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		request.setAttribute("user", user);
@@ -101,9 +102,15 @@ public class ReservationController extends HttpServlet {
 			dispatcher = request.getRequestDispatcher(DETAILS);
 		} 
 		else {
-			System.out.println("Test Réservation -> GetFirst");
-			System.out.println(dao.getAll().get(0));
-			request.setAttribute("reservations", dao.getAll());
+			if (user.getPrivilege().equalsIgnoreCase("admin")) {	
+				System.out.println("All Reservations");
+				request.setAttribute("reservations", dao.getAll());
+			}
+			else {
+				System.out.println("Reservations by user");
+				request.setAttribute("reservations", dao.getByUser(user.getId()));
+			}
+			
 			dispatcher = request.getRequestDispatcher(INDEX);
 		}
 

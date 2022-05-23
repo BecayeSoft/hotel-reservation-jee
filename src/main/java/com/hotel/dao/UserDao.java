@@ -6,6 +6,5 @@ public interface UserDao {
 	
 	public void saveUser(User user);
 	public User loginUser(String username, String password);
-	
-	//public User findUserById(int id);
+	public User findUserById(int id);
 }

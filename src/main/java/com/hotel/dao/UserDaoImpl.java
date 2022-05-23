@@ -64,7 +64,6 @@ public class UserDaoImpl implements UserDao {
 	/**
 	 * Get user by id
 	 */
-	/*
 	@Override
 	public User findUserById(int id) {
 		User user;
@@ -75,5 +74,5 @@ public class UserDaoImpl implements UserDao {
 		
 		return user;
 	}
-	*/
+	
 }

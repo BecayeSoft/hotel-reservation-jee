@@ -49,10 +49,13 @@ public class HomeController extends HttpServlet {
 		System.out.println("User" + user);
 		
 		// User
-		if (user != null && user.getPrivilege().equalsIgnoreCase("admin")) {			
-			System.out.println(user);
+		if (user != null && user.getPrivilege().equalsIgnoreCase("admin")) {	
 			request.setAttribute("isAdmin", true);
+		} else {
+			request.setAttribute("isAdmin", false);
 		}
+		
+		
 		if (user != null) {			
 			request.setAttribute("isConnected", true);
 		} else {			

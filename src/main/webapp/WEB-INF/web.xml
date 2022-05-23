@@ -28,7 +28,7 @@
   	<url-pattern>/chambres/new</url-pattern>
   </filter-mapping>
   <filter-mapping>
-  	<filter-name>CRUDFilter</filter-name>
+  	<filter-name>LoginFilter</filter-name>
   	<url-pattern>/reservations</url-pattern>
   </filter-mapping>
   

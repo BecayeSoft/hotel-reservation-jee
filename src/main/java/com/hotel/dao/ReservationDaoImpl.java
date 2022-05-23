@@ -2,11 +2,15 @@ package com.hotel.dao;
 
 import java.util.List;
 
+import com.hotel.models.Categorie;
+import com.hotel.models.Chambre;
 import com.hotel.models.Reservation;
+import com.hotel.models.User;
 import com.hotel.utils.Helpers;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Query;
 
 public class ReservationDaoImpl implements Dao<Reservation> {
 	
@@ -37,6 +41,23 @@ public class ReservationDaoImpl implements Dao<Reservation> {
 		em.getTransaction().begin();
 		obj = em.find(Reservation.class, id);
 		em.getTransaction().commit();
+		
+		return obj;
+	}
+	
+	public List<Reservation> getByUser(int id) {
+		EntityManager em = null;
+		List<Reservation> obj = null;
+	
+		User user = new UserDaoImpl().findUserById(id);
+		
+		em = factory.createEntityManager();
+		Query query = em.createQuery("SELECT r FROM Reservation r WHERE r.user.id=:id");
+		query.setParameter("id", user.getId()); 
+		obj = query.getResultList();
+
+		System.out.println("\n\n------------------\nReservations by user\n------------------");
+		obj.forEach(System.out::println);
 		
 		return obj;
 	}
