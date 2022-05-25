@@ -99,6 +99,10 @@
 											href="/Hotel-Reservation-JEE/reservations/details?id=${r.id}"> <i
 											class="bi bi-check-circled">Détails</i>
 										</a>
+										<a class="btn btn-danger btn-xs"
+											href="/Hotel-Reservation-JEE/reservations/edit?id=${r.id}"> <i
+											class="bi bi-check-circled">Modifier</i>
+										</a>
 									</div>
 								</div>
 							</div>
@@ -114,9 +118,5 @@
 	</section>
 	<!-- End Events Section -->
 
-	<footer>
-		<a href="https://www.flaticon.com/free-icons/hotel"
-			title="hotel icons">Hotel icons created by Flat Icons - Flaticon</a>
-	</footer>
 </body>
 </html>

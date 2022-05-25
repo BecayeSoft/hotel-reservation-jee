@@ -122,29 +122,36 @@
 
         <div class="section-title">
           <h2>Resérvation</h2>
-          <p font-size:20px">Monsieur <strong>${ user.nom }</strong>, veuillez renseigner les informations de la réservation s'il vous plaît.</p>
+          <p style="font-size:20px;" >Monsieur <strong>${ user.nom }</strong>, veuillez renseigner les informations de la réservation s'il vous plaît.</p>
         </div>
 
         <form method="post" action="save" role="form"
         	class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+        	
+        	<c:set var="error" value="${error}" scope="page" />
+        	
+        	<input type="hidden" name="id" value="${reservation.id }">
+        	
             <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="date" name="date_entree" class="form-control" id="date" placeholder="Date d'éntrée" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              <input value="${reservation.dateEntree}" type="date" name="date_entree" class="form-control" id="date" placeholder="Date d'éntrée" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
               <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="date" name="date_sortie" class="form-control" id="date" placeholder="Date de sortie" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              <input value="${reservation.dateSortie}" type="date" name="date_sortie" class="form-control" id="date" placeholder="Date de sortie" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
               <div class="validate"></div>
             </div>
  
             <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="number" class="form-control" name="nb_personnes" id="people" placeholder="Nombre de personnes" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+              <input value="${reservation.nb_personnes}" type="number" class="form-control" name="nb_personnes" id="people" placeholder="Nombre de personnes" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
               <div class="validate"></div>
             </div>
           <div style="width:50%" class="form-group mt-3">
-            <textarea class="form-control" name="message" rows="5" placeholder="Avez-vous besoin d'une information ?"></textarea>
+            <textarea class="form-control" name="message" rows="5" placeholder="Avez-vous besoin d'une information ?">${reservation.message}</textarea>
             <div class="validate"></div>
           </div>
 
+			<p class="text-danger" >${error}</p>
+	
           <div class="text-center">
           <button style="height: 35px; float:right" class="btn btn-warning" type="submit">Confirmer la réservation</button>
           </div>
@@ -154,7 +161,7 @@
     </section><!-- End Book A Table Section -->
 
 
-  </main><!-- End #main -->
+<!--  </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">

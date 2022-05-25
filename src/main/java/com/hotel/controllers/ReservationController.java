@@ -129,6 +129,7 @@ public class ReservationController extends HttpServlet {
 				id_chambre_global
 			);
 		System.out.println(chambre);
+		obj.setChambre(chambre);
 		
 		// Montant
 		Categorie cat = new CategorieDaoImpl().getById(
@@ -154,7 +155,6 @@ public class ReservationController extends HttpServlet {
 		System.out.println("# personnes:" + request.getParameter("nb_personnes"));
 		System.out.println("Message:" + request.getParameter("message"));
 
-		obj.setChambre(chambre);
 		
 
 		// Conversion des strings en dates
@@ -176,19 +176,26 @@ public class ReservationController extends HttpServlet {
 		obj.setNb_personnes(Integer.parseInt(request.getParameter("nb_personnes")));
 		
 		obj.setUser(user);
-
+		
 		/*
-		 * Si la chambre est libre, on crée la réservation
+		 * If entry date is greater or equal exit day
+		 * AND entry date is greater or equal reservation day,
+		 * we confirm
+		 * Else, we display an error message (see jsp file)
 		 */
-		if (chambre.isAvailable()) {
+		if (date_entreeParsed.isBefore(date_sortieParsed) && date_entreeParsed.isAfter(Instant.now())) {
 			obj.setActive(true);
-	
+			
+			System.out.println("DateEntree=>" + date_entreeParsed);
+			System.out.println("DateSortie=>" + date_sortieParsed);
+			System.out.println("DataEntre - before - DateSortie =>" + date_entreeParsed.isBefore(date_sortieParsed));
+			System.out.println("DataEntre - before - DateSortie =>" + date_entreeParsed.isAfter(Instant.now()));
+			
 			//Reservation obj
 			System.out.println("Chambre libre => Réservation activatée");	// Activatée WTF Hahhaha
 			System.out.println(obj);
 			
-			dao.create(obj);
-			/*
+
 			if (request.getParameter("id") == null || request.getParameter("id").isEmpty()) {
 				dao.create(obj);
 			} 
@@ -197,12 +204,39 @@ public class ReservationController extends HttpServlet {
 				obj.setId(id);
 				dao.update(obj);
 			}
-			*/
+
 			doGet(request, response);
 		}
 		else {
-			System.out.println("Disponibilité de la chambre: " + chambre.isAvailable());
+			System.out.println("error");
+			request.setAttribute("error", "Date d'entrée ou date de sortie incorrecte!");
 		}
+
+		/*
+		 * Si la chambre est libre, on crée la réservation
+		 */
+//		if (chambre.isAvailable()) {
+//			obj.setActive(true);
+//	
+//			//Reservation obj
+//			System.out.println("Chambre libre => Réservation activatée");	// Activatée WTF Hahhaha
+//			System.out.println(obj);
+//			
+//
+//			if (request.getParameter("id") == null || request.getParameter("id").isEmpty()) {
+//				dao.create(obj);
+//			} 
+//			else {
+//				int id = Integer.parseInt(request.getParameter("id"));
+//				obj.setId(id);
+//				dao.update(obj);
+//			}
+//
+//			doGet(request, response);
+//		}
+//		else {
+//			System.out.println("Disponibilité de la chambre: " + chambre.isAvailable());
+//		}
 	}
 
 }

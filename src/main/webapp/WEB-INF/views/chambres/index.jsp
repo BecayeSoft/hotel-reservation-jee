@@ -107,9 +107,6 @@
 	</section>
 	<!-- End Events Section -->
 
-	<footer>
-		<a href="https://www.flaticon.com/free-icons/hotel"
-			title="hotel icons">Hotel icons created by Flat Icons - Flaticon</a>
-	</footer>
+
 </body>
 </html>
